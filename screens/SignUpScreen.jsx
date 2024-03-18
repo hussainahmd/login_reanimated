@@ -6,8 +6,6 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default function SignUpScreen({ navigation }) {
 
-    const height = Dimensions.get("window").height
-
     return (
         <View className='bg-white h-full w-full pt-0'>
             {/* <StatusBar style="light"/> */}

@@ -6,7 +6,7 @@ const GLOBAL = require("../Globals")
 
 export default function PostHook() {
     const [login, setLogin] = useState(false)
-    const [signup, setSignup] = useState()
+    const [signup, setSignup] = useState(false)
 
     console.log('post hook home')
     const loginHook = (email, password) => {

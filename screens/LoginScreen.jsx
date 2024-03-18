@@ -1,6 +1,5 @@
 import { View, Text, Image, StatusBar, TextInput, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { useNavigation } from '@react-navigation/native'
 import Animated, { FadeInDown, FadeInUp } from 'react-native-reanimated'
 import PostHook from '../CustomHooks/PostHook'
 

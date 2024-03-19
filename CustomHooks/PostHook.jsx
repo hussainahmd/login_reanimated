@@ -29,7 +29,7 @@ export default function PostHook() {
             .then((response) => {
                 console.log("We are Successful ==", response.data)
                 setLogin(true)
-                Alert.alert('Login Successful',)
+                Alert.alert('Login Successful')
             })
             .catch((error) => {
                 console.log('What is error == ', error.response.data.message)
@@ -38,11 +38,37 @@ export default function PostHook() {
             })
     }
 
-    const singupHook = () => {
+    const signupHook = (fName, lName, email, password) => {
+        const signUpParams = {
+            "firstName": fName,
+            "lastName": lName,
+            "email": email,
+            "password": password,
+            "confirmPassword": password,
+            "signUpType": "EMAIL"
+        }
 
+        let finalURL = GLOBAL.BASE_URL + 'signup'
+
+        axios
+            .post(finalURL, signUpParams, {
+                headers: {
+                    Accept: "application/json",
+                },
+            })
+            .then((response) => {
+                console.log("We are Successful ==", response.data)
+                setSignup(true)
+                Alert.alert('SignUp Successful')
+            })
+            .catch((error) => {
+                console.log('What is error == ', error.response.data.message)
+                Alert.alert(error.response.data.message)
+                setSignup(false)
+            })
 
     }
 
     console.log('post hook home return')
-    return { loginHook, singupHook }
+    return { loginHook, signupHook }
 }

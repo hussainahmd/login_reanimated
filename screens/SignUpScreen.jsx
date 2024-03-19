@@ -1,20 +1,32 @@
 import { View, Text, Image, StatusBar, TextInput, TouchableOpacity, Dimensions, KeyboardAvoidingView, ScrollView } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import Animated, { FadeInDown, FadeInUp } from 'react-native-reanimated'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import PostHook from '../customHooks/PostHook'
+import InputField from '../components/InputField'
+
 
 export default function SignUpScreen({ navigation }) {
 
+    const [firstName, setFirstName] = useState()
+    const [lastName, setLastName] = useState()
+    const [email, setEmail] = useState()
+    const [password, setPassword] = useState()
+
+    console.log('fName : ', firstName)
+
+    const { signupHook } = PostHook()
+
     return (
-        <View className='bg-white h-full w-full pt-0'>
+        <View className='bg-white flex-1'>
             {/* <StatusBar style="light"/> */}
-            <Image className='h-[860] w-full absolute' source={require('../assets/images/background.png')} />
+            <Image className='h-[800] w-full absolute' source={require('../assets/images/background.png')} />
 
             {/* lights */}
-            <View className='flex-row justify-around w-full '>
+            <View className='flex-row justify-around '>
                 <Animated.Image
                     entering={FadeInUp.springify().damping(5).mass(10)}
-                    className='h-[225] w-[90]' source={require('../assets/images/light.png')} />
+                    className='h-[200] w-[80]' source={require('../assets/images/light.png')} />
 
                 <Animated.Image
                     entering={FadeInDown.springify().delay(100).damping(5).mass(10)}
@@ -22,41 +34,49 @@ export default function SignUpScreen({ navigation }) {
             </View>
 
             {/* title and form */}
-            <View className='h-full w-full flex justify-around pt-4 pb-40'>
+            <View  className='pt-4 flex-1'>
                 {/* title */}
-                <View className='flex items-center pb-0'>
+                <View className='items-center mt-10'>
                     <Animated.Text entering={FadeInDown.springify().damping(10).mass(4)} className='text-white font-bold tracking-wider text-5xl'>
                         SignUp
                     </Animated.Text>
                 </View>
 
                 {/* form */}
-                <View className='flex items-center mx-6 space-y-5 pt-12'>
-                    <Animated.View entering={FadeInDown.springify().damping(10).mass(3)}
-                        className='bg-black/5 p-4 rounded-2xl w-full'>
-                        <TextInput placeholder='Username' placeholderTextColor={'gray'} />
-                    </Animated.View>
+                <View className='items-center mx-6 space-y-3 mt-24'>
 
-                    <Animated.View entering={FadeInDown.delay(200).springify().damping(10).mass(3)}
-                        className='bg-black/5 p-4 rounded-2xl w-full'>
-                        <TextInput placeholder='Email' placeholderTextColor={'gray'} />
-                    </Animated.View>
+                    <InputField text={firstName} setText={setFirstName} delay={0} p_text='First Name' />
 
-                    <Animated.View entering={FadeInDown.delay(400).springify().damping(10).mass(3)}
-                        className='bg-black/5 p-4 rounded-2xl w-full mb-2'>
-                        <TextInput placeholder='Password' placeholderTextColor={'gray'} secureTextEntry />
-                    </Animated.View>
+                    <InputField text={lastName} setText={setLastName} delay={200} p_text='Last Name' />
 
-                    <Animated.View entering={FadeInDown.delay(600).springify().damping(10).mass(3)}
+                    <InputField text={email} setText={setEmail} delay={400} p_text='Email' />
+
+                    <InputField text={password} setText={setPassword} delay={600} p_text='Password' />
+
+                    <Animated.View entering={FadeInDown.delay(800).springify().damping(10).mass(3)}
                         className='w-full'>
-                        <TouchableOpacity className='w-full bg-sky-400 p-4  rounded-2xl mb-0'>
+                        <TouchableOpacity
+                            className='w-full bg-sky-400 p-4  rounded-2xl'
+                            onPress={() => signupHook(firstName,lastName,email,password)}
+                        >
                             <Text className='text-xl font-bold text-white text-center'>
                                 SignUp
                             </Text>
                         </TouchableOpacity>
                     </Animated.View>
+
+                    <Animated.View entering={FadeInDown.delay(1000).springify().damping(10).mass(3)}
+                        className='flex-row justify-center pb-0'>
+                        <Text>Already have an account? </Text>
+                        <TouchableOpacity onPress={() => navigation.navigate('LogIn')}>
+                            <Text className='text-sky-600'>LogIn</Text>
+                        </TouchableOpacity>
+                    </Animated.View>
                 </View>
 
+            </View>
+
+            {/* <View>
                 <Animated.View entering={FadeInDown.delay(800).springify().damping(10).mass(3)}
                     className='flex-row justify-center pb-20'>
                     <Text>Already have an account? </Text>
@@ -64,7 +84,8 @@ export default function SignUpScreen({ navigation }) {
                         <Text className='text-sky-600'>LogIn</Text>
                     </TouchableOpacity>
                 </Animated.View>
-            </View>
+            </View> */}
+
         </View>
     )
 }

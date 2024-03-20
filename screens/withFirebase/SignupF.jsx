@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import Animated, { FadeInDown, FadeInUp } from 'react-native-reanimated'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import PostHook from '../../customHooks/PostHook'
-import {InputField, ImageBackground} from '../../components/components'
+import { InputField, ImageBackground, LightsView } from '../../components/components'
 
 
 export default function SignupF({ navigation }) {
@@ -13,32 +13,21 @@ export default function SignupF({ navigation }) {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
 
-    console.log('fName : ', firstName)
-
     const { signupHook } = PostHook()
 
     return (
         <View className='bg-white flex-1'>
             {/* <StatusBar style="light"/> */}
-            <Image className='h-[800] w-full absolute' source={require('../assets/images/background.png')} />
+            <ImageBackground height={800} />
 
-            {/* lights */}
-            <View className='flex-row justify-around '>
-                <Animated.Image
-                    entering={FadeInUp.springify().damping(5).mass(10)}
-                    className='h-[200] w-[80]' source={require('../assets/images/light.png')} />
-
-                <Animated.Image
-                    entering={FadeInDown.springify().delay(100).damping(5).mass(10)}
-                    className='h-[160] w-[65]' source={require('../assets/images/light.png')} />
-            </View>
+            <LightsView />
 
             {/* title and form */}
-            <View  className='pt-4 flex-1'>
+            <View className='pt-4 flex-1'>
                 {/* title */}
                 <View className='items-center mt-10'>
                     <Animated.Text entering={FadeInDown.springify().damping(10).mass(4)} className='text-white font-bold tracking-wider text-5xl'>
-                        SignUp
+                        SignUp_f
                     </Animated.Text>
                 </View>
 
@@ -57,7 +46,7 @@ export default function SignupF({ navigation }) {
                         className='w-full'>
                         <TouchableOpacity
                             className='w-full bg-sky-400 p-4  rounded-2xl'
-                            onPress={() => signupHook(firstName,lastName,email,password)}
+                            onPress={() => signupHook(firstName, lastName, email, password)}
                         >
                             <Text className='text-xl font-bold text-white text-center'>
                                 SignUp
@@ -68,7 +57,7 @@ export default function SignupF({ navigation }) {
                     <Animated.View entering={FadeInDown.delay(1000).springify().damping(10).mass(3)}
                         className='flex-row justify-center pb-0'>
                         <Text>Already have an account? </Text>
-                        <TouchableOpacity onPress={() => navigation.navigate('LogIn')}>
+                        <TouchableOpacity onPress={() => navigation.navigate('LoginF')}>
                             <Text className='text-sky-600'>LogIn</Text>
                         </TouchableOpacity>
                     </Animated.View>

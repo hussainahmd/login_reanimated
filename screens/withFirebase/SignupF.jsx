@@ -2,8 +2,9 @@ import { View, Text, Image, StatusBar, TextInput, TouchableOpacity, Dimensions, 
 import React, { useState } from 'react'
 import Animated, { FadeInDown, FadeInUp } from 'react-native-reanimated'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import PostHook from '../../customHooks/PostHook'
+
 import { InputField, ImageBackground, LightsView } from '../../components/components'
+import onPressSignup from '../../firebase/functions'
 
 
 export default function SignupF({ navigation }) {
@@ -12,8 +13,6 @@ export default function SignupF({ navigation }) {
     const [lastName, setLastName] = useState()
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
-
-    const { signupHook } = PostHook()
 
     return (
         <View className='bg-white flex-1'>
@@ -46,7 +45,7 @@ export default function SignupF({ navigation }) {
                         className='w-full'>
                         <TouchableOpacity
                             className='w-full bg-sky-400 p-4  rounded-2xl'
-                            onPress={() => signupHook(firstName, lastName, email, password)}
+                            onPress={() => onPressSignup(email, password)}
                         >
                             <Text className='text-xl font-bold text-white text-center'>
                                 SignUp

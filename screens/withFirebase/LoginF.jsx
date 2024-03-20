@@ -1,16 +1,15 @@
 import { View, Text, Image, StatusBar, TextInput, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import Animated, { FadeInDown, FadeInUp } from 'react-native-reanimated'
-import PostHook from '../../customHooks/PostHook'
+
 import { InputField, ImageBackground, LightsView } from '../../components/components'
+import onPressLogin from '../../firebase/functions'
 
 export default function LoginF({ navigation }) {
 
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
-
-    const { loginHook } = PostHook()
-
+    
     return (
         <View className='bg-white flex-1'>
 
@@ -39,7 +38,7 @@ export default function LoginF({ navigation }) {
                         className='w-full'>
                         <TouchableOpacity
                             className='bg-sky-400 p-4 rounded-2xl'
-                            onPress={() => loginHook(email, password)}
+                            onPress={() => onPressLogin(email, password)}
                         >
                             <Text className='text-xl font-bold text-white text-center'>
                                 LogIn

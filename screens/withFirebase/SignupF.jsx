@@ -65,16 +65,6 @@ export default function SignupF({ navigation }) {
 
             </View>
 
-            {/* <View>
-                <Animated.View entering={FadeInDown.delay(800).springify().damping(10).mass(3)}
-                    className='flex-row justify-center pb-20'>
-                    <Text>Already have an account? </Text>
-                    <TouchableOpacity onPress={() => navigation.navigate('LogIn')}>
-                        <Text className='text-sky-600'>LogIn</Text>
-                    </TouchableOpacity>
-                </Animated.View>
-            </View> */}
-
         </View>
     )
 }

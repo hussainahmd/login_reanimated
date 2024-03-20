@@ -1,10 +1,10 @@
 import { View, Text, Image, StatusBar, TextInput, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import Animated, { FadeInDown, FadeInUp } from 'react-native-reanimated'
-import PostHook from '../customHooks/PostHook'
-import {InputField, ImageBackground, LightsView} from '../components/components'
+import PostHook from '../../customHooks/PostHook'
+import { InputField, ImageBackground } from '../../components/components'
 
-export default function LoginScreen({ navigation }) {
+export default function LoginF({ navigation }) {
 
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
@@ -22,11 +22,19 @@ export default function LoginScreen({ navigation }) {
 
     return (
         <View className='bg-white flex-1'>
-            
             {/* <StatusBar style="light"/> */}
-            <ImageBackground height = {860}/>
+            <Image className='h-[860] w-full absolute' source={require('../assets/images/background.png')} />
 
-            <LightsView />
+            {/* lights */ console.log('home login return')}
+            <View className='flex-row justify-around'>
+                <Animated.Image
+                    entering={FadeInUp.springify().damping(5).mass(10)}
+                    className='h-[200] w-[80]' source={require('../assets/images/light.png')} />
+
+                <Animated.Image
+                    entering={FadeInDown.springify().delay(100).damping(5).mass(10)}
+                    className='h-[160] w-[65]' source={require('../assets/images/light.png')} />
+            </View>
 
             {/* title and form //absolute mt-40 absolute h-full w-full*/}
             <View className='pt-4'>

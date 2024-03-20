@@ -2,11 +2,11 @@ import { View, Text, Image, StatusBar, TextInput, TouchableOpacity, Dimensions, 
 import React, { useState } from 'react'
 import Animated, { FadeInDown, FadeInUp } from 'react-native-reanimated'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import PostHook from '../customHooks/PostHook'
-import { InputField, ImageBackground, LightsView } from '../components/components'
+import PostHook from '../../customHooks/PostHook'
+import {InputField, ImageBackground} from '../../components/components'
 
 
-export default function SignUpScreen({ navigation }) {
+export default function SignupF({ navigation }) {
 
     const [firstName, setFirstName] = useState()
     const [lastName, setLastName] = useState()
@@ -19,11 +19,19 @@ export default function SignUpScreen({ navigation }) {
 
     return (
         <View className='bg-white flex-1'>
-
             {/* <StatusBar style="light"/> */}
-            <ImageBackground height={800} />
+            <Image className='h-[800] w-full absolute' source={require('../assets/images/background.png')} />
 
-            <LightsView />
+            {/* lights */}
+            <View className='flex-row justify-around '>
+                <Animated.Image
+                    entering={FadeInUp.springify().damping(5).mass(10)}
+                    className='h-[200] w-[80]' source={require('../assets/images/light.png')} />
+
+                <Animated.Image
+                    entering={FadeInDown.springify().delay(100).damping(5).mass(10)}
+                    className='h-[160] w-[65]' source={require('../assets/images/light.png')} />
+            </View>
 
             {/* title and form */}
             <View  className='pt-4 flex-1'>
@@ -67,6 +75,16 @@ export default function SignUpScreen({ navigation }) {
                 </View>
 
             </View>
+
+            {/* <View>
+                <Animated.View entering={FadeInDown.delay(800).springify().damping(10).mass(3)}
+                    className='flex-row justify-center pb-20'>
+                    <Text>Already have an account? </Text>
+                    <TouchableOpacity onPress={() => navigation.navigate('LogIn')}>
+                        <Text className='text-sky-600'>LogIn</Text>
+                    </TouchableOpacity>
+                </Animated.View>
+            </View> */}
 
         </View>
     )

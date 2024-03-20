@@ -3,6 +3,7 @@ import { auth } from "./firebase"
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInAnonymously } from "firebase/auth"
 
 export const onPressSignup = async (email, password) => {
+    console.log('onPress Signup')
     await createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             console.log("SignUp : \n", userCredential)
@@ -13,11 +14,11 @@ export const onPressSignup = async (email, password) => {
             const errorMessage = error.message
             console.log('Error Code == ', errorCode)
             console.log('Error Message == ', errorMessage)
-            // ..
+
         })
 }
 
-export const onPressLogin = async () => {
+export const onPressLogin = async (email, password) => {
     await signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed in
@@ -28,8 +29,8 @@ export const onPressLogin = async () => {
         .catch((error) => {
             const errorCode = error.code
             const errorMessage = error.message
-            console.log("My Error : ", errorMessage)
-            // ..
+            console.log('Error Code == ', errorCode)
+            console.log('Error Message == ', errorMessage)
         })
 }
 

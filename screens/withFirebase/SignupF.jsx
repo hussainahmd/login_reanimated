@@ -4,7 +4,7 @@ import Animated, { FadeInDown, FadeInUp } from 'react-native-reanimated'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { InputField, ImageBackground, LightsView } from '../../components/components'
-import onPressSignup from '../../firebase/functions'
+import {onPressSignup} from '../../firebase/functions'
 
 
 export default function SignupF({ navigation }) {

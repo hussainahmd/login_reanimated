@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import Animated, { FadeInDown, FadeInUp } from 'react-native-reanimated'
 
 import { InputField, ImageBackground, LightsView } from '../../components/components'
-import onPressLogin from '../../firebase/functions'
+import {onPressLogin} from '../../firebase/functions'
 
 export default function LoginF({ navigation }) {
 

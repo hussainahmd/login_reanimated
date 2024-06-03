@@ -5,13 +5,15 @@ import LoginScreen from "./screens/LoginScreen";
 import SignUpScreen from "./screens/SignUpScreen";
 import LoginF from './screens/withFirebase/LoginF';
 import SignupF from './screens/withFirebase/SignupF';
+import Home from './screens/Home';
 
 const Stack = createNativeStackNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="LogIn" screenOptions={{headerShown:false}}>
+      <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown:false}}>
+        <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="LogIn" component={LoginScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="LoginF" component={LoginF} />

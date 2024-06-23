@@ -1,6 +1,7 @@
 import { View, Text, Button } from 'react-native'
 import React, { useEffect, useState } from 'react'
 
+
 export default function Home() {
     console.log('Top Area')
 

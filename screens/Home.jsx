@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 
 export default function Home() {
     console.log('Top Area')
+    
 
     const [font, setFont] = useState(14)
 
